@@ -10,7 +10,7 @@
       --phi: 1.618;
       --gap: 2rem;
     }
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
     }
     body {
@@ -22,18 +22,16 @@
       line-height: 1.6;
     }
     .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: var(--gap);
-    }
-    .top {
       display: grid;
       grid-template-columns: var(--phi)fr 1fr;
       grid-template-rows: auto auto;
       grid-template-areas:
         "about logo"
-        "about links";
+        "video links";
       gap: var(--gap);
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--gap);
       align-items: start;
     }
     .about {
@@ -43,14 +41,16 @@
       grid-area: logo;
       max-width: 100%;
       height: auto;
-      align-self: start;
       justify-self: center;
+      align-self: start;
     }
     .links {
       grid-area: links;
+      align-self: start;
+      justify-self: start;
     }
     .video {
-      margin-top: calc(var(--gap) * 2);
+      grid-area: video;
     }
     h2 {
       margin: 0 0 1rem 0;
@@ -76,39 +76,37 @@
     }
     .video iframe {
       width: 100%;
-      height: auto;
       aspect-ratio: 16 / 9;
       display: block;
       border: none;
     }
     @media (max-width: 768px) {
-      .top {
+      .container {
         display: flex;
         flex-direction: column;
+        gap: var(--gap);
       }
       .logo {
-        margin: var(--gap) auto 0 auto;
+        margin: 0 auto;
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="top">
-      <div class="about">
-        <h2>About</h2>
-        <p>vox & bow is a Toronto-based duo composed of vocalist Lindsay McIntyre and violinist Veronica Zupanic focused on cutting edge contemporary and classical performance.</p>
-      </div>
-      <img src="./logo.jpeg" alt="Vox & Bow Logo" class="logo">
-      <div class="links">
-        <h2>Links</h2>
-        <ul>
-          <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="mailto:email@example.com">Email</a></li>
-          <li><a href="./press-kit.pdf" target="_blank" rel="noopener">Press Kit (PDF)</a></li>
-          <li><a href="#" target="_blank" rel="noopener">SoundCloud</a></li>
-        </ul>
-      </div>
+    <div class="about">
+      <h2>About</h2>
+      <p>vox & bow is a Toronto-based duo composed of vocalist Lindsay McIntyre and violinist Veronica Zupanic focused on cutting edge contemporary and classical performance.</p>
+    </div>
+    <img src="./logo.jpeg" alt="Vox & Bow Logo" class="logo">
+    <div class="links">
+      <h2>Links</h2>
+      <ul>
+        <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="mailto:email@example.com">Email</a></li>
+        <li><a href="./press-kit.pdf" target="_blank" rel="noopener">Press Kit (PDF)</a></li>
+        <li><a href="#" target="_blank" rel="noopener">SoundCloud</a></li>
+      </ul>
     </div>
     <div class="video">
       <iframe
