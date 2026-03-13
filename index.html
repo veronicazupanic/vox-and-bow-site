@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>vox & bow</title>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --gap: 2rem;
@@ -17,47 +17,45 @@
       padding: 0;
       background: #fff;
       color: #333;
-      font-family: 'Merriweather', serif;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
       line-height: 1.6;
       text-transform: lowercase;
     }
-    /* Simplified vertical layout */
+    /* Asymmetrical grid layout */
     .container {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      grid-template-rows: auto auto auto;
+      grid-template-areas:
+        "about logo"
+        ". links"
+        "video video";
+      gap: var(--gap);
       max-width: 1000px;
       margin: 0 auto;
       padding: var(--gap);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: var(--gap);
+      align-items: start;
+    }
+    .about {
+      grid-area: about;
+      max-width: 40ch;
+      text-align: left;
     }
     .logo {
-      width: 150px;
+      grid-area: logo;
+      justify-self: center;
+      width: 200px;
       height: auto;
-      margin: var(--gap) 0;
+      margin-top: var(--gap);
     }
-    .about,
-    .links,
-    .video {
-      width: 100%;
-      max-width: 800px;
-      text-align: center;
-    }
-    .links ul {
+    .links {
+      grid-area: links;
+      justify-self: end;
       display: flex;
       flex-direction: column;
-      align-items: center;
       gap: 0.5rem;
-      margin: 0;
-      padding: 0;
-      list-style: none;
+      text-align: right;
     }
-    h2 {
-      margin: 0 0 1rem 0;
-      font-size: 1.75rem;
-      font-weight: 600;
-    }
-    /* List-style and spacing handled above in .links ul */
     .links a {
       color: #007acc;
       text-decoration: none;
@@ -67,13 +65,17 @@
     .links a:hover {
       border-color: #007acc;
     }
+    .video {
+      grid-area: video;
+      margin-top: calc(var(--gap) * 1.5);
+      justify-self: center;
+    }
     .video iframe {
       width: 100%;
       aspect-ratio: 16 / 9;
       display: block;
       border: none;
     }
-    /* Responsive adjustments are inherent with flex and fluid widths */
   </style>
 </head>
 <body>
