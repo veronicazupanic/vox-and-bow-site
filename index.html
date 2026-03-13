@@ -6,6 +6,13 @@
   <title>vox & bow</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --phi: 1.618;
+      --gap: 2rem;
+    }
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
       padding: 0;
@@ -15,88 +22,84 @@
       line-height: 1.6;
     }
     .container {
-      max-width: 1000px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 20px;
+      padding: var(--gap);
     }
-    .logo {
-      display: block;
-      max-width: 300px;
-      height: auto;
-      margin: 0;
-      /* positioned via grid */
-    }
-    /* Grid layout to center logo and position sections around */
-    .grid {
+    .top {
       display: grid;
-      grid-template-areas:
-        "bio logo links"
-        "video logo performances";
-      grid-template-columns: 1fr auto 1fr;
+      grid-template-columns: var(--phi)fr 1fr;
       grid-template-rows: auto auto;
-      gap: 40px;
-      justify-items: center;
+      grid-template-areas:
+        "about logo"
+        "about links";
+      gap: var(--gap);
       align-items: start;
     }
-    .bio {
-      grid-area: bio;
-      text-align: left;
+    .about {
+      grid-area: about;
+    }
+    .logo {
+      grid-area: logo;
+      max-width: 100%;
+      height: auto;
+      align-self: start;
+      justify-self: center;
     }
     .links {
       grid-area: links;
-      text-align: left;
     }
     .video {
-      grid-area: video;
-    }
-    .performances {
-      grid-area: performances;
+      margin-top: calc(var(--gap) * 2);
     }
     h2 {
-      margin-top: 0;
-      margin-bottom: 10px;
-      font-size: 1.5rem;
+      margin: 0 0 1rem 0;
+      font-size: 1.75rem;
+      font-weight: 600;
     }
     .links ul {
       list-style: none;
       padding: 0;
       margin: 0;
     }
-    .links li {
-      margin-bottom: 10px;
+    .links li + li {
+      margin-top: 0.5rem;
     }
     .links a {
-      text-decoration: none;
       color: #007acc;
-      transition: text-decoration 0.3s;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
     }
     .links a:hover {
-      text-decoration: underline;
+      border-color: #007acc;
     }
-    @media (max-width: 600px) {
-      .logo {
-        margin-bottom: 20px;
-      }
-    }
-    .performances,
-    .video {
-      margin-top: 40px;
-      text-align: center;
-    }
-    .performances iframe,
     .video iframe {
-      max-width: 100%;
+      width: 100%;
       height: auto;
+      aspect-ratio: 16 / 9;
+      display: block;
+      border: none;
+    }
+    @media (max-width: 768px) {
+      .top {
+        display: flex;
+        flex-direction: column;
+      }
+      .logo {
+        margin: var(--gap) auto 0 auto;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="grid">
-      <div class="bio">
+    <div class="top">
+      <div class="about">
         <h2>About</h2>
         <p>vox & bow is a Toronto-based duo composed of vocalist Lindsay McIntyre and violinist Veronica Zupanic focused on cutting edge contemporary and classical performance.</p>
       </div>
+      <img src="./logo.jpeg" alt="Vox & Bow Logo" class="logo">
       <div class="links">
         <h2>Links</h2>
         <ul>
@@ -106,21 +109,14 @@
           <li><a href="#" target="_blank" rel="noopener">SoundCloud</a></li>
         </ul>
       </div>
-
-    <section class="performances">
-      <h2>Upcoming Performances</h2>
-    </section>
-
-    <section class="video">
-      <iframe width="560" height="315"
+    </div>
+    <div class="video">
+      <iframe
         src="https://www.youtube-nocookie.com/embed/kukgkaB9WzA?rel=0"
         title="Vox & Bow YouTube Video"
-        frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen>
       </iframe>
-    </section>
-      <img src="./logo.jpeg" alt="Vox & Bow Logo" class="logo">
     </div>
   </div>
 </body>
