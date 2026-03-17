@@ -35,34 +35,41 @@
     .page {
       max-width: 920px;
       margin: 0 auto;
-      padding: 72px 52px 96px;
+      padding: 44px 52px 80px;
     }
 
     /* ── Logo ── */
     .logo-wrap {
-      margin-bottom: 52px;
+      margin-bottom: 32px;
       padding-left: 7%;
     }
 
     .logo {
       display: block;
-      width: 300px;
+      width: 280px;
       height: auto;
+      mix-blend-mode: multiply;
     }
 
     /* ── Rule ── */
     .rule {
       border: none;
       border-top: 1px solid var(--rule);
-      margin-bottom: 52px;
+      margin-bottom: 36px;
     }
 
-    /* ── Content row: about + links ── */
-    .content-row {
+    /* ── Lower: two-column grid ── */
+    .lower {
+      display: grid;
+      grid-template-columns: 2fr 3fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    .left-col {
       display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 48px;
+      flex-direction: column;
+      gap: 28px;
     }
 
     /* About */
@@ -72,17 +79,14 @@
       font-weight: 400;
       line-height: 1.88;
       letter-spacing: 0.008em;
-      max-width: 46ch;
       color: var(--ink);
     }
 
     /* Links */
     .links {
-      flex-shrink: 0;
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
-      padding-top: 3px;
+      align-items: flex-start;
     }
 
     .links a {
@@ -106,10 +110,9 @@
       color: var(--ink);
     }
 
-    /* ── Video ── */
-    .video-section {
-      margin-top: 80px;
-      padding-left: 7%;
+    /* ── Video (right column) ── */
+    .right-col {
+      padding-top: 2px;
     }
 
     .video-label {
@@ -119,11 +122,7 @@
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 16px;
-    }
-
-    .video-wrap {
-      max-width: 640px;
+      margin-bottom: 14px;
     }
 
     .video-wrap iframe {
@@ -135,7 +134,7 @@
 
     /* ── Footer ── */
     footer {
-      margin-top: 88px;
+      margin-top: 64px;
       padding-left: 7%;
       font-family: var(--sans);
       font-weight: 300;
@@ -149,34 +148,25 @@
     /* ── Mobile ── */
     @media (max-width: 580px) {
       .page {
-        padding: 52px 28px 72px;
+        padding: 40px 28px 64px;
       }
 
       .logo-wrap,
-      .video-section,
       footer {
         padding-left: 0;
       }
 
       .logo {
-        width: 220px;
+        width: 210px;
       }
 
-      .content-row {
-        flex-direction: column;
-        gap: 40px;
-      }
-
-      .links {
-        align-items: flex-start;
+      .lower {
+        grid-template-columns: 1fr;
+        gap: 36px;
       }
 
       .links a + a {
         border-top: 1px solid var(--rule);
-      }
-
-      .video-wrap {
-        max-width: 100%;
       }
     }
   </style>
@@ -190,31 +180,32 @@
 
     <hr class="rule">
 
-    <div class="content-row">
+    <div class="lower">
 
-      <div class="about">
-        <p>Vox &amp; Bow is a Toronto-based duo — vocalist Lindsay McIntyre and violinist Veronica Zupanic — performing at the forefront of contemporary and classical music.</p>
+      <div class="left-col">
+        <div class="about">
+          <p>Vox &amp; Bow is a Toronto-based duo — vocalist Lindsay McIntyre and violinist Veronica Zupanic — performing at the forefront of contemporary and classical music.</p>
+        </div>
+        <nav class="links" aria-label="Links">
+          <a href="https://www.instagram.com/voxandbow/" target="_blank" rel="noopener">Instagram</a>
+          <a href="mailto:voxandbow@gmail.com">Email</a>
+          <a href="https://www.youtube.com/@voxandbow" target="_blank" rel="noopener">YouTube</a>
+          <a href="#">Press Kit</a>
+        </nav>
       </div>
 
-      <nav class="links" aria-label="Links">
-        <a href="https://www.instagram.com/voxandbow/" target="_blank" rel="noopener">Instagram</a>
-        <a href="mailto:voxandbow@gmail.com">Email</a>
-        <a href="https://www.youtube.com/@voxandbow" target="_blank" rel="noopener">YouTube</a>
-        <a href="#">Press Kit</a>
-      </nav>
-
-    </div>
-
-    <div class="video-section">
-      <p class="video-label">Watch</p>
-      <div class="video-wrap">
-        <iframe
-          src="https://www.youtube-nocookie.com/embed/kukgkaB9WzA?rel=0"
-          title="Vox &amp; Bow"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
+      <div class="right-col">
+        <p class="video-label">Watch</p>
+        <div class="video-wrap">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/kukgkaB9WzA?rel=0"
+            title="Vox &amp; Bow"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
       </div>
+
     </div>
 
     <footer>&copy; 2026 Vox &amp; Bow</footer>
