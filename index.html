@@ -3,102 +3,222 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>vox & bow</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <title>Vox &amp; Bow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --gap: 2rem;
-    }
     *, *::before, *::after {
       box-sizing: border-box;
-    }
-    body {
       margin: 0;
       padding: 0;
-      background: #fff;
-      color: #333;
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-      line-height: 1.6;
-      text-transform: lowercase;
     }
-    /* Asymmetrical grid layout */
-    .container {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      grid-template-rows: auto auto auto;
-      grid-template-areas:
-        "about logo"
-        ". links"
-        "video video";
-      gap: var(--gap);
-      max-width: 1000px;
+
+    :root {
+      --bg: #faf9f7;
+      --ink: #1c1a17;
+      --muted: #918d87;
+      --rule: #d8d4ce;
+      --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      --sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--serif);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ── Page shell ── */
+    .page {
+      max-width: 920px;
       margin: 0 auto;
-      padding: var(--gap);
-      align-items: start;
+      padding: 72px 52px 96px;
     }
-    .about {
-      grid-area: about;
-      max-width: 40ch;
-      text-align: left;
+
+    /* ── Logo ── */
+    .logo-wrap {
+      margin-bottom: 52px;
+      padding-left: 7%;
     }
+
     .logo {
-      grid-area: logo;
-      justify-self: center;
-      width: 200px;
+      display: block;
+      width: 300px;
       height: auto;
-      margin-top: var(--gap);
     }
+
+    /* ── Rule ── */
+    .rule {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin-bottom: 52px;
+    }
+
+    /* ── Content row: about + links ── */
+    .content-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 48px;
+    }
+
+    /* About */
+    .about p {
+      font-size: 1.175rem;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.88;
+      letter-spacing: 0.008em;
+      max-width: 46ch;
+      color: var(--ink);
+    }
+
+    /* Links */
     .links {
-      grid-area: links;
-      justify-self: end;
+      flex-shrink: 0;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
-      text-align: right;
+      align-items: flex-end;
+      padding-top: 3px;
     }
+
     .links a {
-      color: #007acc;
+      display: block;
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
       text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.3s;
+      color: var(--muted);
+      padding: 8px 0;
+      transition: color 0.18s ease;
     }
+
+    .links a + a {
+      border-top: 1px solid var(--rule);
+    }
+
     .links a:hover {
-      border-color: #007acc;
+      color: var(--ink);
     }
-    .video {
-      grid-area: video;
-      margin-top: calc(var(--gap) * 1.5);
-      justify-self: center;
+
+    /* ── Video ── */
+    .video-section {
+      margin-top: 80px;
+      padding-left: 7%;
     }
-    .video iframe {
+
+    .video-label {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .video-wrap {
+      max-width: 640px;
+    }
+
+    .video-wrap iframe {
+      display: block;
       width: 100%;
       aspect-ratio: 16 / 9;
-      display: block;
       border: none;
+    }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 88px;
+      padding-left: 7%;
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0.55;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 580px) {
+      .page {
+        padding: 52px 28px 72px;
+      }
+
+      .logo-wrap,
+      .video-section,
+      footer {
+        padding-left: 0;
+      }
+
+      .logo {
+        width: 220px;
+      }
+
+      .content-row {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .links {
+        align-items: flex-start;
+      }
+
+      .links a + a {
+        border-top: 1px solid var(--rule);
+      }
+
+      .video-wrap {
+        max-width: 100%;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="about">
-      <p>vox & bow is a Toronto-based duo composed of vocalist Lindsay McIntyre and violinist Veronica Zupanic focused on cutting edge contemporary and classical performance.</p>
+  <div class="page">
+
+    <div class="logo-wrap">
+      <img src="logo.jpeg" alt="Vox &amp; Bow" class="logo">
     </div>
-    <img src="logo.jpeg" alt="Vox & Bow Logo" class="logo">
-    <div class="links">
-      <ul>
-        <li><a href="https://www.instagram.com/voxandbow/" target="_blank" rel="noopener">instagram</a></li>
-        <li><a href="mailto:voxandbow@gmail.com">email</a></li>
-        <li><a href="https://www.youtube.com/@voxandbow" target="_blank" rel="noopener">youtube</a></li>
-      </ul>
+
+    <hr class="rule">
+
+    <div class="content-row">
+
+      <div class="about">
+        <p>Vox &amp; Bow is a Toronto-based duo — vocalist Lindsay McIntyre and violinist Veronica Zupanic — performing at the forefront of contemporary and classical music.</p>
+      </div>
+
+      <nav class="links" aria-label="Links">
+        <a href="https://www.instagram.com/voxandbow/" target="_blank" rel="noopener">Instagram</a>
+        <a href="mailto:voxandbow@gmail.com">Email</a>
+        <a href="https://www.youtube.com/@voxandbow" target="_blank" rel="noopener">YouTube</a>
+        <a href="#">Press Kit</a>
+      </nav>
+
     </div>
-    <div class="video">
-      <iframe
-        src="https://www.youtube-nocookie.com/embed/kukgkaB9WzA?rel=0"
-        title="Vox & Bow YouTube Video"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-      </iframe>
+
+    <div class="video-section">
+      <p class="video-label">Watch</p>
+      <div class="video-wrap">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/kukgkaB9WzA?rel=0"
+          title="Vox &amp; Bow"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
     </div>
+
+    <footer>&copy; 2026 Vox &amp; Bow</footer>
+
   </div>
 </body>
 </html>
